@@ -14,6 +14,8 @@ from ui_utils import (
     add_modern_feedback,
     handle_conversation_flow
 )
+from dotenv import load_dotenv
+load_dotenv()
 
 def check_pickle_files():
     """Überprüft das Vorhandensein und den Inhalt der Pickle-Dateien"""
@@ -144,9 +146,8 @@ if __name__ == "__main__":
         if not os.path.exists(VECTOR_STORE_PATH):
             os.makedirs(VECTOR_STORE_PATH)
         
-        os.environ["GOOGLE_API_KEY"] = "AIzaSyBcQirBbnPoYInsC15fz-3-vUYPUbpfUkI"
-        
         main()
         
     except Exception as e:
         st.error(f"Kritischer Fehler: {str(e)}")
+
