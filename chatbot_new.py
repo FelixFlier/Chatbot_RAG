@@ -18,6 +18,8 @@ from model_classes import (
     EnhancedHybridSearcher,
     ResponseGenerator
 )
+from dotenv import load_dotenv
+load_dotenv()
 # Constants
 BASE_PATH = os.path.dirname(os.path.abspath(__file__))
 VECTOR_STORE_PATH = os.path.join(BASE_PATH, "vector_stores")
@@ -69,7 +71,7 @@ class IntelligentRAGChatbot:
             
             # API Key Handling
             if api_key:
-                os.environ["GOOGLE_API_KEY"] = "AIzaSyBcQirBbnPoYInsC15fz-3-vUYPUbpfUkI"
+                os.environ["GOOGLE_API_KEY"] = api_key
             elif not os.getenv("GOOGLE_API_KEY"):
                 raise InitializationError("GOOGLE_API_KEY nicht gefunden in Umgebungsvariablen")
             
