@@ -145,7 +145,8 @@ if __name__ == "__main__":
     try:
         if not os.path.exists(VECTOR_STORE_PATH):
             os.makedirs(VECTOR_STORE_PATH)
-        
+        api_key = st.secrets["GOOGLE_API_KEY"]
+        os.environ["GOOGLE_API_KEY"] = api_key
         main()
         
     except Exception as e:
