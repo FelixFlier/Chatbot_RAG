@@ -34,7 +34,6 @@ typing-extensions>=4.5.0
 
 # Data Processing
 pandas>=2.0.0
-pickle5>=0.0.11
 
 # Development
 pytest>=7.0.0
