@@ -69,11 +69,8 @@ class IntelligentRAGChatbot:
             with open(bm25_full_path, 'rb') as f:
                 self.bm25 = pickle.load(f)
             
-            # API Key Handling
-            if api_key:
-                os.environ["GOOGLE_API_KEY"] = api_key
-            elif not os.getenv("GOOGLE_API_KEY"):
-                raise InitializationError("GOOGLE_API_KEY nicht gefunden in Umgebungsvariablen")
+            api_key = st.secrets["GOOGLE_API_KEY"]
+            os.environ["GOOGLE_API_KEY"] = api_key
             
             # LLM Initialisierung mit Error Handling
             try:
