@@ -1,0 +1,190 @@
+2024-12-11 15:35:23,052 - INFO - Use pytorch device_name: cpu
+2024-12-11 15:35:23,052 - INFO - Load pretrained SentenceTransformer: multi-qa-mpnet-base-dot-v1
+2024-12-11 15:35:25,736 - ERROR - Fehler in der Hauptfunktion: 'utf-8' codec can't decode byte 0xfc in position 21: invalid start byte
+2024-12-11 15:41:08,146 - INFO - Use pytorch device_name: cpu
+2024-12-11 15:41:08,146 - INFO - Load pretrained SentenceTransformer: multi-qa-mpnet-base-dot-v1
+2024-12-11 15:41:11,280 - INFO - Text erfolgreich in 313 Chunks aufgeteilt
+2024-12-11 15:41:59,762 - INFO - Loading faiss with AVX512 support.
+2024-12-11 15:41:59,781 - INFO - Could not load library with AVX512 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx512'")
+2024-12-11 15:41:59,781 - INFO - Loading faiss with AVX2 support.
+2024-12-11 15:42:00,015 - INFO - Successfully loaded faiss with AVX2 support.
+2024-12-11 15:42:04,699 - INFO - vectorstore erfolgreich gespeichert in C:\Users\felix\LangchainProject\vector_stores\vectorstore.pkl
+2024-12-11 15:42:04,746 - INFO - bm25 erfolgreich gespeichert in C:\Users\felix\LangchainProject\vector_stores\bm25.pkl
+2024-12-11 15:42:04,795 - INFO - documents erfolgreich gespeichert in C:\Users\felix\LangchainProject\vector_stores\documents.pkl
+2024-12-11 15:42:22,554 - INFO - Use pytorch device_name: cpu
+2024-12-11 15:42:22,554 - INFO - Load pretrained SentenceTransformer: multi-qa-mpnet-base-dot-v1
+2024-12-11 15:44:24,147 - INFO - Use pytorch device_name: cpu
+2024-12-11 15:44:24,147 - INFO - Load pretrained SentenceTransformer: multi-qa-mpnet-base-dot-v1
+2024-12-11 15:44:27,005 - INFO - Text erfolgreich in 313 Chunks aufgeteilt
+2024-12-11 15:45:32,791 - INFO - Loading faiss with AVX512 support.
+2024-12-11 15:45:32,792 - INFO - Could not load library with AVX512 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx512'")
+2024-12-11 15:45:32,792 - INFO - Loading faiss with AVX2 support.
+2024-12-11 15:45:32,893 - INFO - Successfully loaded faiss with AVX2 support.
+2024-12-11 15:45:40,233 - INFO - vectorstore erfolgreich gespeichert in C:\Users\felix\LangchainProject\vector_stores\vectorstore.pkl
+2024-12-11 15:45:40,268 - INFO - bm25 erfolgreich gespeichert in C:\Users\felix\LangchainProject\vector_stores\bm25.pkl
+2024-12-11 15:45:40,312 - INFO - documents erfolgreich gespeichert in C:\Users\felix\LangchainProject\vector_stores\documents.pkl
+2024-12-11 15:48:56,456 - INFO - Use pytorch device_name: cpu
+2024-12-11 15:48:56,462 - INFO - Load pretrained SentenceTransformer: multi-qa-mpnet-base-dot-v1
+2024-12-11 15:48:58,485 - INFO - Text erfolgreich in 313 Chunks aufgeteilt
+2024-12-11 15:49:48,360 - INFO - vectorstore erfolgreich gespeichert in C:\Users\felix\AppData\Local\Temp\tmptk9q2wdd\vectorstore.pkl
+2024-12-11 15:49:48,372 - INFO - bm25 erfolgreich gespeichert in C:\Users\felix\AppData\Local\Temp\tmptk9q2wdd\bm25.pkl
+2024-12-11 15:49:48,656 - INFO - documents erfolgreich gespeichert in C:\Users\felix\AppData\Local\Temp\tmptk9q2wdd\documents.pkl
+2024-12-12 15:44:23,475 - INFO - Use pytorch device_name: cpu
+2024-12-12 15:44:23,476 - INFO - Load pretrained SentenceTransformer: multi-qa-mpnet-base-dot-v1
+2024-12-12 15:44:26,369 - INFO - Text erfolgreich in 313 Chunks aufgeteilt
+2024-12-12 15:45:34,360 - INFO - Loading faiss with AVX512 support.
+2024-12-12 15:45:34,360 - INFO - Could not load library with AVX512 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx512'")
+2024-12-12 15:45:34,360 - INFO - Loading faiss with AVX2 support.
+2024-12-12 15:45:34,455 - INFO - Successfully loaded faiss with AVX2 support.
+2024-12-12 15:45:38,124 - INFO - vectorstore erfolgreich gespeichert in C:\Users\felix\LangchainProject\vector_stores\vectorstore.pkl
+2024-12-12 15:45:38,193 - INFO - bm25 erfolgreich gespeichert in C:\Users\felix\LangchainProject\vector_stores\bm25.pkl
+2024-12-12 15:45:38,241 - INFO - documents erfolgreich gespeichert in C:\Users\felix\LangchainProject\vector_stores\documents.pkl
+2024-12-12 15:48:30,256 - INFO - Use pytorch device_name: cpu
+2024-12-12 15:48:30,256 - INFO - Load pretrained SentenceTransformer: multi-qa-mpnet-base-dot-v1
+2024-12-12 15:48:32,462 - INFO - Text erfolgreich in 313 Chunks aufgeteilt
+2024-12-12 15:49:34,089 - INFO - vectorstore erfolgreich gespeichert in C:\Users\felix\AppData\Local\Temp\tmp7tk__l24\vectorstore.pkl
+2024-12-12 15:49:34,101 - INFO - bm25 erfolgreich gespeichert in C:\Users\felix\AppData\Local\Temp\tmp7tk__l24\bm25.pkl
+2024-12-12 15:49:34,106 - INFO - documents erfolgreich gespeichert in C:\Users\felix\AppData\Local\Temp\tmp7tk__l24\documents.pkl
+2024-12-12 16:33:12,860 - INFO - Use pytorch device_name: cpu
+2024-12-12 16:33:12,860 - INFO - Load pretrained SentenceTransformer: multi-qa-mpnet-base-dot-v1
+2024-12-12 16:33:15,124 - INFO - Text erfolgreich in 57 Chunks aufgeteilt
+2024-12-12 16:33:25,522 - INFO - Loading faiss with AVX512 support.
+2024-12-12 16:33:25,522 - INFO - Could not load library with AVX512 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx512'")
+2024-12-12 16:33:25,522 - INFO - Loading faiss with AVX2 support.
+2024-12-12 16:33:25,604 - INFO - Successfully loaded faiss with AVX2 support.
+2024-12-12 16:33:27,600 - INFO - vectorstore erfolgreich gespeichert in C:\Users\felix\LangchainProject\vector_stores\vectorstore.pkl
+2024-12-12 16:33:27,624 - INFO - bm25 erfolgreich gespeichert in C:\Users\felix\LangchainProject\vector_stores\bm25.pkl
+2024-12-12 16:33:27,653 - INFO - documents erfolgreich gespeichert in C:\Users\felix\LangchainProject\vector_stores\documents.pkl
+2024-12-12 16:33:42,781 - INFO - Use pytorch device_name: cpu
+2024-12-12 16:33:42,781 - INFO - Load pretrained SentenceTransformer: multi-qa-mpnet-base-dot-v1
+2024-12-12 16:33:46,877 - INFO - Text erfolgreich in 57 Chunks aufgeteilt
+2024-12-12 16:33:58,469 - INFO - vectorstore erfolgreich gespeichert in C:\Users\felix\AppData\Local\Temp\tmpjyrrihb0\vectorstore.pkl
+2024-12-12 16:33:58,473 - INFO - bm25 erfolgreich gespeichert in C:\Users\felix\AppData\Local\Temp\tmpjyrrihb0\bm25.pkl
+2024-12-12 16:33:58,495 - INFO - documents erfolgreich gespeichert in C:\Users\felix\AppData\Local\Temp\tmpjyrrihb0\documents.pkl
+2024-12-12 16:42:48,506 - INFO - Use pytorch device_name: cpu
+2024-12-12 16:42:48,508 - INFO - Load pretrained SentenceTransformer: multi-qa-mpnet-base-dot-v1
+2024-12-12 16:42:50,810 - INFO - Text erfolgreich in 57 Chunks aufgeteilt
+2024-12-12 16:43:03,288 - INFO - Loading faiss with AVX512 support.
+2024-12-12 16:43:03,289 - INFO - Could not load library with AVX512 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx512'")
+2024-12-12 16:43:03,289 - INFO - Loading faiss with AVX2 support.
+2024-12-12 16:43:03,372 - INFO - Successfully loaded faiss with AVX2 support.
+2024-12-12 16:43:05,380 - INFO - vectorstore erfolgreich gespeichert in C:\Users\felix\LangchainProject\vector_stores\vectorstore.pkl
+2024-12-12 16:43:05,480 - INFO - bm25 erfolgreich gespeichert in C:\Users\felix\LangchainProject\vector_stores\bm25.pkl
+2024-12-12 16:43:05,530 - INFO - documents erfolgreich gespeichert in C:\Users\felix\LangchainProject\vector_stores\documents.pkl
+2024-12-12 16:49:50,208 - INFO - Use pytorch device_name: cpu
+2024-12-12 16:49:50,208 - INFO - Load pretrained SentenceTransformer: multi-qa-mpnet-base-dot-v1
+2024-12-12 16:49:56,282 - INFO - Text erfolgreich in 57 Chunks aufgeteilt
+2024-12-12 16:50:35,499 - INFO - vectorstore erfolgreich gespeichert in C:\Users\felix\AppData\Local\Temp\tmp244lolte\vectorstore.pkl
+2024-12-12 16:50:35,561 - INFO - bm25 erfolgreich gespeichert in C:\Users\felix\AppData\Local\Temp\tmp244lolte\bm25.pkl
+2024-12-12 16:50:35,582 - INFO - documents erfolgreich gespeichert in C:\Users\felix\AppData\Local\Temp\tmp244lolte\documents.pkl
+2024-12-16 17:51:21,039 - ERROR - Fehler in der Hauptfunktion: name 'torch' is not defined
+2024-12-16 17:54:33,903 - INFO - Load pretrained SentenceTransformer: sentence-transformers/paraphrase-multilingual-mpnet-base-v2
+2024-12-16 17:54:42,133 - ERROR - Fehler in der Hauptfunktion: [Errno 2] No such file or directory: 'C:\\Users\\felix\\Downloads\\Machine Learning\\text.txt'
+2024-12-16 17:57:05,134 - INFO - Load pretrained SentenceTransformer: sentence-transformers/paraphrase-multilingual-mpnet-base-v2
+2024-12-16 17:57:15,406 - ERROR - Fehler bei der Textverarbeitung: 
+**********************************************************************
+  Resource [93mpunkt_tab[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('punkt_tab')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mtokenizers/punkt_tab/english/[0m
+
+  Searched in:
+    - 'C:\\Users\\felix/nltk_data'
+    - 'C:\\Users\\felix\\LangchainProject\\venv\\nltk_data'
+    - 'C:\\Users\\felix\\LangchainProject\\venv\\share\\nltk_data'
+    - 'C:\\Users\\felix\\LangchainProject\\venv\\lib\\nltk_data'
+    - 'C:\\Users\\felix\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+2024-12-16 17:57:15,428 - ERROR - Fehler in der Hauptfunktion: 
+**********************************************************************
+  Resource [93mpunkt_tab[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('punkt_tab')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mtokenizers/punkt_tab/english/[0m
+
+  Searched in:
+    - 'C:\\Users\\felix/nltk_data'
+    - 'C:\\Users\\felix\\LangchainProject\\venv\\nltk_data'
+    - 'C:\\Users\\felix\\LangchainProject\\venv\\share\\nltk_data'
+    - 'C:\\Users\\felix\\LangchainProject\\venv\\lib\\nltk_data'
+    - 'C:\\Users\\felix\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+2024-12-16 18:09:22,027 - INFO - Load pretrained SentenceTransformer: sentence-transformers/paraphrase-multilingual-mpnet-base-v2
+2024-12-16 18:09:34,608 - INFO - Text erfolgreich verarbeitet: {'avg_chunk_size': 375.62295081967216, 'total_chunks': 61, 'importance_scores': [1.8523764530960682, 1.9981502189855531, 2.4716654620820373, 2.011936255653286, 1.986003637321247, 2.0486839732371314, 1.9144930832812352, 1.9718307427658557, 2.083415848212283, 2.1055105376964582, 2.1353627789987457, 1.8902995646063736, 1.9953126928027891, 2.089366584280997, 2.1072853258957323, 1.9274152004480012, 1.9920377647432685, 1.765380921649024, 2.135726277186823, 2.0182294345862295, 1.6557224754631281, 1.532249832583992, 1.7466404710308432, 1.658646393938052, 2.040670569746729, 2.244521947898767, 2.0725358184463496, 2.0019466223596862, 1.9494919613118535, 1.8266974335680743, 1.9762787374259707, 2.074959721591228, 2.09230465090897, 1.7142358450135688, 1.7866938967397645, 1.7940862229963717, 2.223286212141793, 2.244014164794384, 1.9136875318655642, 2.335534395565953, 2.2226594205212877, 2.4652303411352388, 2.2078056956774454, 1.6940806569661013, 1.7976282472574687, 2.07612659656065, 2.2761627096128776, 2.08770816321108, 1.9219870924601525, 1.7731984999176411, 1.683357961792392, 1.7873357185557273, 1.928224773167052, 1.934194601481283, 1.8093719787648093, 1.8982098272042773, 2.2623649949396856, 2.3011878554617007, 2.1935536183074076, 2.1727783280572557, 1.7776831755149525], 'silhouette_score': np.float64(-0.0006046195239444791), 'num_clusters': 3, 'avg_importance_score': np.float64(1.9943530806473224)}
+2024-12-16 18:09:42,402 - INFO - Loading faiss with AVX512 support.
+2024-12-16 18:09:42,402 - INFO - Could not load library with AVX512 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx512'")
+2024-12-16 18:09:42,402 - INFO - Loading faiss with AVX2 support.
+2024-12-16 18:09:42,512 - INFO - Successfully loaded faiss with AVX2 support.
+2024-12-16 18:09:48,562 - INFO - vectorstore gespeichert: C:\Users\felix\LangchainProject\vector_stores\vectorstore.pkl
+2024-12-16 18:09:48,599 - INFO - bm25 gespeichert: C:\Users\felix\LangchainProject\vector_stores\bm25.pkl
+2024-12-16 18:09:48,629 - INFO - documents gespeichert: C:\Users\felix\LangchainProject\vector_stores\documents.pkl
+2024-12-16 18:09:48,629 - INFO - cluster_index gespeichert: C:\Users\felix\LangchainProject\vector_stores\cluster_index.pkl
+2024-12-16 18:09:48,644 - ERROR - Fehler bei der Suche: 'EnhancedVectorStoreManager' object has no attribute 'vectorstore'
+2024-12-16 18:09:48,645 - ERROR - Fehler: 'EnhancedVectorStoreManager' object has no attribute 'vectorstore'
+2024-12-16 18:48:38,315 - INFO - Load pretrained SentenceTransformer: sentence-transformers/paraphrase-multilingual-mpnet-base-v2
+2024-12-16 18:49:00,381 - INFO - Text erfolgreich verarbeitet: {'avg_chunk_size': 369.76344086021504, 'total_chunks': 93, 'importance_scores': [2.0313485356108294, 2.1848271706626665, 2.6834530494618285, 2.1942621687299173, 2.1967078174871544, 2.1952011245216814, 2.107145752297349, 2.144829034906195, 2.282205608628479, 2.2713728335147425, 2.3730938048523114, 2.08520369545691, 2.148090876210953, 2.315322568386504, 2.339817678746992, 2.1081630841467285, 2.221594431986338, 1.9523701524754768, 2.350230052259358, 2.189490281640172, 1.8676012971464744, 1.7143651101392507, 1.9376646686884842, 1.8773100811984889, 2.303088049108535, 2.4803978403238416, 2.319651802134504, 2.241754353655483, 2.184263970509197, 1.997056468270754, 2.186027891613782, 2.325515480038278, 2.3182189973916834, 1.9196628687042505, 2.021678598954401, 2.01572882861898, 2.4906674449845503, 2.4132299358261453, 2.103456712230168, 2.5772426101026067, 2.5199333714547985, 2.777665915850146, 2.471221463708715, 1.8827640985589118, 2.0086350042337022, 2.3179456589524534, 2.5311661017589957, 2.321160916236376, 2.0750538413650816, 1.9486259559143033, 1.8533513507963093, 2.050229850614125, 2.1703086841000605, 2.1597989779454214, 2.047133505343226, 2.118861733321308, 2.5040733940608657, 2.5753916695074888, 2.4306273801851437, 2.3905300961561817, 1.9218493403563417, 2.2898852836845447, 2.390110555910388, 2.5012533290523176, 2.4546500171502945, 2.3982491100472116, 2.120856630986751, 2.8742060978681727, 2.3980573904063616, 2.3450160324286387, 2.1340638113729367, 2.2019294460124264, 2.397528981286594, 2.4303531247463184, 2.721156816612756, 3.0205789394335554, 2.646878011249484, 2.690186611796745, 2.474275761069384, 2.2619675754720148, 2.396851154137943, 2.181640965102019, 2.0830080337298296, 2.459177602052239, 2.560752205927575, 2.432979415412006, 2.397792628237384, 2.7849450263848894, 2.9072723734948474, 2.507508065700194, 2.856701225434765, 2.293239210088815, 2.2794002112058593], 'silhouette_score': np.float64(0.00989540173348278), 'num_clusters': 3, 'avg_importance_score': np.float64(2.297184007371372)}
+2024-12-16 18:49:13,032 - INFO - Loading faiss with AVX512 support.
+2024-12-16 18:49:13,032 - INFO - Could not load library with AVX512 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx512'")
+2024-12-16 18:49:13,032 - INFO - Loading faiss with AVX2 support.
+2024-12-16 18:49:13,175 - INFO - Successfully loaded faiss with AVX2 support.
+2024-12-16 18:49:23,499 - INFO - vectorstore gespeichert: C:\Users\felix\LangchainProject\vector_stores\vectorstore.pkl
+2024-12-16 18:49:23,539 - INFO - bm25 gespeichert: C:\Users\felix\LangchainProject\vector_stores\bm25.pkl
+2024-12-16 18:49:23,738 - INFO - documents gespeichert: C:\Users\felix\LangchainProject\vector_stores\documents.pkl
+2024-12-16 18:49:23,792 - INFO - cluster_index gespeichert: C:\Users\felix\LangchainProject\vector_stores\cluster_index.pkl
+2024-12-16 18:49:23,792 - ERROR - Fehler bei der Suche: 'EnhancedVectorStoreManager' object has no attribute 'vectorstore'
+2024-12-16 18:49:23,792 - ERROR - Fehler: 'EnhancedVectorStoreManager' object has no attribute 'vectorstore'
+2024-12-16 19:55:16,288 - INFO - Load pretrained SentenceTransformer: sentence-transformers/paraphrase-multilingual-mpnet-base-v2
+2024-12-16 19:55:57,135 - INFO - Text erfolgreich verarbeitet: {'avg_chunk_size': 369.76344086021504, 'total_chunks': 93, 'importance_scores': [2.031348535610829, 2.184827170662667, 2.6834530494618276, 2.1942621687299173, 2.196707817487154, 2.1952011245216814, 2.107145752297349, 2.1448290349061954, 2.282205608628479, 2.271372833514742, 2.3730938048523114, 2.0852036954569106, 2.1480908762109534, 2.3153225683865046, 2.3398176787469915, 2.108163084146728, 2.2215944319863383, 1.9523701524754773, 2.350230052259358, 2.189490281640172, 1.867601297146474, 1.7143651101392512, 1.9376646686884835, 1.8773100811984889, 2.3030880491085353, 2.480397840323841, 2.3196518021345036, 2.241754353655483, 2.1842639705091966, 1.9970564682707537, 2.186027891613782, 2.3255154800382782, 2.318218997391683, 1.91966286870425, 2.0216785989544013, 2.01572882861898, 2.4906674449845507, 2.4132299358261458, 2.1034567122301677, 2.5772426101026054, 2.5199333714547985, 2.7776659158501458, 2.471221463708715, 1.8827640985589116, 2.0086350042337022, 2.317945658952452, 2.5311661017589957, 2.321160916236376, 2.0750538413650816, 1.9486259559143035, 1.8533513507963093, 2.050229850614125, 2.1703086841000605, 2.1597989779454214, 2.047133505343226, 2.118861733321308, 2.504073394060866, 2.5753916695074888, 2.430627380185144, 2.3905300961561813, 1.9218493403563413, 2.289885283684544, 2.3901105559103875, 2.501253329052318, 2.4546500171502945, 2.398249110047212, 2.1208566309867516, 2.8742060978681727, 2.3980573904063625, 2.3450160324286378, 2.1340638113729367, 2.201929446012426, 2.3975289812865936, 2.430353124746318, 2.7211568166127558, 3.0205789394335554, 2.6468780112494845, 2.690186611796745, 2.474275761069384, 2.2619675754720148, 2.3968511541379436, 2.1816409651020194, 2.083008033729829, 2.459177602052239, 2.5607522059275745, 2.4329794154120052, 2.3977926282373834, 2.7849450263848894, 2.9072723734948474, 2.507508065700194, 2.8567012254347635, 2.293239210088814, 2.2794002112058593], 'silhouette_score': np.float64(0.00989540173348278), 'num_clusters': 3, 'avg_importance_score': np.float64(2.297184007371372)}
+2024-12-16 19:56:21,251 - INFO - Loading faiss with AVX512 support.
+2024-12-16 19:56:21,251 - INFO - Could not load library with AVX512 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx512'")
+2024-12-16 19:56:21,251 - INFO - Loading faiss with AVX2 support.
+2024-12-16 19:56:21,722 - INFO - Successfully loaded faiss with AVX2 support.
+2024-12-16 19:56:38,210 - INFO - vectorstore gespeichert: C:\Users\felix\LangchainProject\vector_stores\vectorstore.pkl
+2024-12-16 19:56:38,340 - INFO - bm25 gespeichert: C:\Users\felix\LangchainProject\vector_stores\bm25.pkl
+2024-12-16 19:56:38,506 - INFO - documents gespeichert: C:\Users\felix\LangchainProject\vector_stores\documents.pkl
+2024-12-16 19:56:38,590 - INFO - cluster_index gespeichert: C:\Users\felix\LangchainProject\vector_stores\cluster_index.pkl
+2024-12-16 19:56:38,599 - ERROR - Fehler bei der Suche: 'EnhancedVectorStoreManager' object has no attribute 'vectorstore'
+2024-12-16 19:56:38,599 - ERROR - Fehler: 'EnhancedVectorStoreManager' object has no attribute 'vectorstore'
+2024-12-16 20:10:07,742 - INFO - Load pretrained SentenceTransformer: sentence-transformers/paraphrase-multilingual-mpnet-base-v2
+2024-12-16 20:10:26,614 - INFO - Loading faiss with AVX512 support.
+2024-12-16 20:10:26,638 - INFO - Could not load library with AVX512 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx512'")
+2024-12-16 20:10:26,638 - INFO - Loading faiss with AVX2 support.
+2024-12-16 20:10:27,159 - INFO - Successfully loaded faiss with AVX2 support.
+2024-12-16 20:16:58,101 - INFO - Load pretrained SentenceTransformer: sentence-transformers/paraphrase-multilingual-mpnet-base-v2
+2024-12-16 20:18:48,705 - INFO - Text erfolgreich verarbeitet: {'avg_chunk_size': 329.590625, 'total_chunks': 320, 'importance_scores': [2.840369030245791, 2.55398424596863, 2.305473415362513, 2.8250932697660986, 2.3646159976341523, 2.7336334087586045, 2.9176473726548187, 2.9574505078612656, 3.0340896899541905, 2.4192590933887, 2.399140132084648, 2.605908040360036, 2.383679170366132, 2.9000079430422145, 3.0868303682016167, 2.94395938569868, 3.247461175111712, 2.94408007884593, 2.7662038603925194, 2.607777808570294, 3.1616555079116377, 2.946455967529725, 3.2472276754338916, 3.0890554695693586, 3.310237788979723, 2.40213878928863, 2.9822778530469205, 3.104356379994137, 2.742625680620043, 2.6185079733310603, 2.621577870185576, 2.897012798022183, 2.9099419947405023, 2.4882516314024676, 2.912111339042036, 2.174977152173329, 2.939808467205091, 2.9277121002743827, 2.6512457923248847, 2.5707381251872894, 2.724742406343945, 3.1821467736898383, 2.8344976741869337, 2.459827756758656, 2.715199688845288, 2.800022848825645, 2.803034845943376, 2.1812269198021133, 2.5387731985266018, 2.8959976983505373, 2.3891743021156087, 2.496307064292979, 2.784086376179349, 3.0854450996474805, 2.181728393786768, 2.7743167683919387, 2.6838440565229207, 2.6821997747744515, 3.119162312519754, 2.6152630050680425, 2.5822707246832013, 3.0037408951742783, 2.5743421262009347, 2.904636672777218, 2.8104347028977803, 2.587173592064067, 2.7562073234365485, 2.2823866777240145, 2.302393256969173, 2.854831441346149, 2.5909612399953885, 2.755028531241788, 3.0280453966831766, 2.7943564163333146, 2.7367470350807452, 2.6990545936805628, 2.5839056992910505, 2.8674610762439268, 2.714059671498338, 2.8930019169809165, 2.871761943806399, 2.7430573941908443, 2.7030439252610186, 2.3830306016806837, 2.616833067038868, 3.0185065736936365, 3.053374157617603, 3.0601552790502704, 3.0222640707712944, 2.598470918871706, 2.668048486973968, 2.1580141311654506, 3.7103922944931265, 2.9487363956147354, 2.3387207521922764, 2.728257799099557, 2.903653333523386, 2.1736149420487596, 2.320493189401979, 2.6455108113319987, 2.5756721517501564, 2.9089697751353736, 3.2090337068121255, 2.19628698249167, 2.9997298012166955, 2.696841640521872, 2.4410751408638993, 2.339609029511004, 2.501272728733146, 2.4666687898629096, 2.7426742349630957, 2.1541921748377195, 2.7665514382939334, 2.9821592034371207, 2.545730688371629, 2.625599893049613, 3.06950146329821, 3.074454688385634, 2.7504792159557585, 2.96805427125655, 3.1686604306059545, 3.0638317247028386, 2.476446835626508, 2.9961467029258335, 2.697169807995457, 2.3231462156665703, 3.030278309152664, 2.9464793655955477, 3.1165103901379565, 3.428547399633582, 3.0431501162101355, 2.830876218017166, 2.5275135728233686, 2.6845719410094184, 2.4887116008002725, 2.722410482062763, 2.8931440448691217, 2.5705563131485927, 2.627392287279788, 2.5258847723670432, 2.5785344594621042, 2.6318452371803414, 2.93700683686678, 2.981354780189523, 2.7288782015769697, 2.913624457003439, 2.907329214912441, 2.863375369392722, 3.3774171413169993, 3.4170057024190488, 3.499019271661715, 3.279444596129303, 3.269449713881275, 2.8162737093743098, 2.4093734502910316, 2.947558480781915, 2.0585297443387107, 2.783116694943814, 2.780846570136605, 2.1925401467014956, 2.5843888221133953, 2.6565244306637155, 2.775189596626209, 3.205209031986378, 2.7460389691927283, 2.6577062911946463, 2.5012493501192075, 2.8327451561536274, 2.612436575772752, 2.9231690134266484, 3.4054662501566075, 2.8249732200099085, 2.9460859874146648, 2.6858567942049785, 3.1964148911525676, 2.697131616791733, 2.55078079520237, 2.971047352807121, 2.8804425532108224, 3.0118011054347607, 2.987488313001003, 1.6787427901815004, 2.3459355500836616, 2.3732179343133644, 2.4942796368038587, 2.545496026878154, 2.6412055397503433, 3.1447968339448464, 3.1369747859272317, 2.7608719082246367, 2.7992690638766, 2.5314936690453256, 2.9513565789527947, 2.927616593303784, 2.635763453359296, 2.755456816138065, 2.5766861136071584, 2.827216276838996, 2.857680956467814, 2.418118153682431, 2.748701810416494, 3.251132525164034, 3.0542803127417293, 3.140572469794526, 2.8098657992116114, 3.387628820075119, 3.605872074691125, 3.359860788175954, 2.900216926677407, 2.723214850813778, 2.9151015655623986, 3.0222089978406945, 3.0786915779275987, 3.3872935216791986, 3.5254316733863362, 3.2703546253538605, 3.1359760651761794, 2.7537266424815403, 2.9219629790355257, 3.0065720231519557, 3.160975222638334, 3.5376111042219733, 2.77377236403898, 2.995973759522684, 2.918322206682728, 3.148460365401746, 3.1449357280558425, 2.825641894093843, 3.0590214711936796, 3.40363861686205, 3.3520329093475625, 3.041934920425636, 3.155416423148172, 3.4497996959992507, 3.1983860006897724, 3.2296438070559197, 2.8608585228659242, 3.0709421496613163, 4.669708707125663, 2.5547316907640294, 2.6643081076664217, 2.8925047307732954, 2.799587175945899, 2.748998849263971, 2.7365796064224934, 2.712549776751172, 3.4031757457719864, 4.669708707125663, 2.6729258958942546, 2.8556532133718813, 2.807641969120624, 2.973047874173509, 2.7968877467919158, 2.901278489549802, 2.729450685084999, 2.96859866448452, 2.781743204983555, 2.7786607305434585, 2.7668470933684666, 2.7781529535266802, 2.6917165049467737, 2.6138415929991687, 2.9511513353444654, 2.81924752381536, 2.9607012701273288, 3.37491459853311, 3.0114052714112027, 3.822410846738459, 2.6080832886814544, 3.0104106167280045, 3.168180023934157, 3.0969604385938347, 3.0663232119797046, 2.9463826547188243, 2.6473596593153292, 3.00006849108736, 3.0562544096816664, 3.2328898244758713, 2.8088747047309877, 2.9029826182161393, 2.7735394651087115, 2.862215562335746, 2.6419644892651, 2.701847963826658, 2.404647399757958, 2.6023972623796623, 2.8201384431159964, 2.0087192664356355, 2.7939889076757725, 2.674058890399464, 3.177862457843492, 2.7597718259785577, 2.951019450003, 2.5414166388940775, 3.226381703686406, 3.0560936793836446, 3.6830876892935525, 2.7280308558921504, 2.8787225365055282, 2.8696125568350612, 3.2373593676977066, 2.7383571138064435, 2.296676667733264, 2.6884190928013414, 4.1588830833596715, 2.6266806873411426, 2.963145806865427, 2.79272067940562, 2.5562862275520675, 4.1588830833596715, 2.617773238025754, 2.992834089437748, 2.3177566447294646, 2.811734065550461, 2.7236419678097916, 2.9390701246893705, 2.714851446254725, 2.9957980290996438, 2.950276842343536, 2.7773278145080655], 'silhouette_score': np.float64(-0.03499497665725668), 'num_clusters': 5, 'avg_importance_score': np.float64(2.8439509916625054)}
+2024-12-16 20:19:55,053 - INFO - Loading faiss with AVX512 support.
+2024-12-16 20:19:55,067 - INFO - Could not load library with AVX512 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx512'")
+2024-12-16 20:19:55,067 - INFO - Loading faiss with AVX2 support.
+2024-12-16 20:19:55,243 - INFO - Successfully loaded faiss with AVX2 support.
+2024-12-16 20:20:16,255 - INFO - vectorstore gespeichert: C:\Users\felix\LangchainProject\vector_stores\vectorstore.pkl
+2024-12-16 20:20:16,371 - INFO - bm25 gespeichert: C:\Users\felix\LangchainProject\vector_stores\bm25.pkl
+2024-12-16 20:20:16,428 - INFO - documents gespeichert: C:\Users\felix\LangchainProject\vector_stores\documents.pkl
+2024-12-16 20:20:16,432 - INFO - cluster_index gespeichert: C:\Users\felix\LangchainProject\vector_stores\cluster_index.pkl
