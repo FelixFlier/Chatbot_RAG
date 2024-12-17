@@ -21,8 +21,8 @@ from model_classes import (
 from dotenv import load_dotenv
 load_dotenv()
 # Constants
-BASE_PATH = os.path.dirname(os.path.abspath(__file__))
-VECTOR_STORE_PATH = os.path.join(BASE_PATH, "vector_stores")
+BASE_PATH = Path(__file__).parent
+VECTOR_STORE_PATH = str(BASE_PATH / "vector_stores")
 
 class InitializationError(Exception):
     """Fehler bei der Initialisierung des Chatbots"""
