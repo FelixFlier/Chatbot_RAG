@@ -143,12 +143,25 @@ def main():
 
 if __name__ == "__main__":
     try:
+        # Stelle sicher, dass Verzeichnis existiert
         if not os.path.exists(VECTOR_STORE_PATH):
             os.makedirs(VECTOR_STORE_PATH)
-        api_key = st.secrets["GOOGLE_API_KEY"]
-        os.environ["GOOGLE_API_KEY"] = api_key
+        
+        # Hole API Key aus Streamlit Secrets
+        try:
+            api_key = st.secrets["GOOGLE_API_KEY"]
+            if not api_key:
+                raise ValueError("API Key ist leer")
+            os.environ["GOOGLE_API_KEY"] = api_key
+        except Exception as secret_error:
+            st.error("Fehler beim Laden des API Keys aus Streamlit Secrets. "
+                    "Bitte stellen Sie sicher, dass der GOOGLE_API_KEY in den "
+                    "Streamlit Secrets konfiguriert ist.")
+            st.stop()
+            
+        # Starte die Hauptanwendung
         main()
         
     except Exception as e:
         st.error(f"Kritischer Fehler: {str(e)}")
-
+        st.stop()
