@@ -7,7 +7,7 @@ WP-RAG-Chatbot ist ein fortschrittlicher, KI-gestützter Chatbot, der speziell f
 ### 🌟 Hauptfunktionen
 
 - **Intelligente Themenerkennung**: Dynamische Erkennung und Verfolgung von Gesprächsthemen
-- **Hybride Sucharchitektur**: Kombiniert semantische und keyword-basierte Suche
+- **Hybride Sucharchitektur**: Verwendet einen zweistufigen Suchalgorithmus der dabei semantische, graphen-basierte,Statistisch-basierte und keyword-basierte Suche kombiniert 
 - **Qualitätssicherung**: Automatische Überprüfung der Antwortqualität
 - **Adaptives Dialogmanagement**: Kontextbewusstes Gesprächsmanagement
 - **Benutzerfreundliche Oberfläche**: Moderne Web-Interface mit Streamlit
