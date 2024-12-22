@@ -1,93 +1,80 @@
 # RAG-Chatbot: Intelligenter Assistent für Wirtschaftsprüfungsthemen
 
 ## 🎯 Projektübersicht
+Der WP-RAG-Chatbot ist ein hochmoderner, KI-gestützter Assistent, spezialisiert auf Wirtschaftsprüfungsthemen. Basierend auf der RAG-Architektur (Retrieval-Augmented Generation) kombiniert er fortschrittliche Technologien wie Google's Gemini Pro LLM mit optimierten Embedding-Modellen für präzise, kontextbezogene Antworten.
 
-WP-RAG-Chatbot ist ein fortschrittlicher, KI-gestützter Chatbot, der speziell für die Beantwortung von Fragen im Bereich Wirtschaftsprüfung entwickelt wurde. Der Chatbot basiert auf der RAG-Architektur (Retrieval-Augmented Generation) und nutzt modernste Technologien wie Google's Gemini Pro LLM und verschiedene Embedding-Modelle für präzise und kontextuell relevante Antworten.
+### 🌟 Kernfunktionen
+- **Intelligente Themenerkennung & -verfolgung**
+  - Dynamische Erkennung von Themenwechseln
+  - Kontinuierliche Kontextaktualisierung
+  - Gewichtete Themenrelevanz
 
-### 🌟 Hauptfunktionen
+- **Innovative Sucharchitektur**
+  - Mehrstufiger hybrider Suchalgorithmus
+  - Semantische und graphbasierte Suche
+  - Statistische und keyword-basierte Analyse
+  - Dynamische Gewichtungsanpassung
 
-- **Intelligente Themenerkennung**: Dynamische Erkennung und Verfolgung von Gesprächsthemen
-- **Hybride Sucharchitektur**: Verwendet einen zweistufigen Suchalgorithmus der dabei semantische, graphen-basierte,Statistisch-basierte und keyword-basierte Suche kombiniert 
-- **Qualitätssicherung**: Automatische Überprüfung der Antwortqualität
-- **Adaptives Dialogmanagement**: Kontextbewusstes Gesprächsmanagement
-- **Benutzerfreundliche Oberfläche**: Moderne Web-Interface mit Streamlit
-- **Themenwechselerkennung**: Intelligente Erkennung von Kontextwechseln
-- **Mehrsprachige Unterstützung**: Optimiert für deutsche Fachsprache
+- **Fortschrittliche Qualitätssicherung**
+  - Automatische Qualitätsmetriken
+  - Kontinuierliche Antwortoptimierung
+  - Kontextuelle Relevanzprüfung
 
-## 🛠 Technologie-Stack
+- **Benutzerfreundliches Interface**
+  - Adaptives Light/Dark Design
+  - Intuitive Bedienelemente
+  - Responsive Layoutanpassung
 
-- **Frontend**: Streamlit
-- **LLM**: Google Gemini Pro
-- **Embeddings**: Sentence-Transformers (paraphrase-multilingual-mpnet-base-v2)
-- **Vektor-Datenbank**: FAISS
-- **NLP-Verarbeitung**: SpaCy
-- **Weitere Bibliotheken**: 
-  - LangChain
-  - NumPy
-  - NetworkX
-  - scikit-learn
-  - RANK-BM25
+## 🛠 Technische Details
 
-## 📋 Systemanforderungen
+### Verwendete Technologien
+- **Frontend-Framework**: 
+  - Streamlit (moderne Python Web-App)
+  - Responsive CSS/HTML
+  - Custom Theme Engine
 
-- Python 3.8+
-- 4GB RAM (minimal)
-- Google API Key für Gemini Pro
-- Internetverbindung für API-Zugriffe
+- **KI & Machine Learning**:
+  - Google Gemini Pro LLM
+  - Sentence-Transformers (multilingual-mpnet-base-v2)
+  - Custom Neural Networks
 
-## 🔋 Hauptkomponenten
+- **Datenverarbeitung**:
+  - FAISS Vectorstore
+  - SpaCy NLP Pipeline
+  - NetworkX Graph Processing
 
-### IntelligentRAGChatbot
-- Kernklasse für die Chatbot-Funktionalität
-- Verwaltet Konversationskontext und Themenverfolgung
-- Implementiert hybride Suchstrategien
+### Systemarchitektur
 
-### DialogStateManager
-- Steuert den Gesprächsfluss
-- Verwaltet verschiedene Dialogphasen
-- Passt Antwortstrategie dynamisch an
+#### IntelligentRAGChatbot (Kernmodul)
+- **Funktionen**:
+  - Konversationsmanagement
+  - Themenverfolgung
+  - Hybride Suchkoordination
+  
+- **Features**:
+  - Cache-Optimierung
+  - Performance-Monitoring
+  - Fehlerbehandlung
 
-### EnhancedHybridSearcher
-- Kombiniert verschiedene Suchmethoden
-- Implementiert Cache-Strategien
-- Optimiert Suchergebnisse durch Gewichtung
+#### EnhancedHybridSearcher
+- **Suchstrategien**:
+  - Semantische Ähnlichkeitssuche
+  - Graphbasierte Traversierung
+  - BM25 Keyword-Matching
+  - Statistische Analyse
 
-### ResponseGenerator
-- Generiert kontextbezogene Antworten
-- Prüft Antwortqualität
-- Implementiert Reparaturstrategien
+- **Optimierungen**:
+  - Multi-Stage Caching
+  - Adaptive Gewichtung
+  - Parallele Verarbeitung
 
-## 🔍 Funktionsweise
+#### ResponseGenerator
+- **Antwortgenerierung**:
+  - Kontextuelle Templating
+  - Dynamische Formatierung
+  - Qualitätssicherung
 
-1. **Anfrageverarbeitung**:
-   - Erkennung der Benutzerabsicht
-   - Analyse der Konzepte
-   - Aktualisierung des Themenkontexts
-
-2. **Informationsabruf**:
-   - Hybride Suche in der Wissensbasis
-   - Kontextbasierte Filterung
-   - Dynamische Gewichtung der Ergebnisse
-
-3. **Antwortgenerierung**:
-   - Kontextbezogene Formulierung
-   - Qualitätsprüfung
-   - Automatische Verbesserung bei Bedarf
-
-## 🎨 UI-Funktionen
-
-- Helles/Dunkles Design
-- Anpassbare Schriftgröße
-- Kopier-Funktion für Antworten
-- Feedback-System
-- Qualitätsmetriken-Anzeige
-- Automatisches Scrollen
-
-## 📊 Qualitätsmetriken
-
-Der Chatbot überwacht kontinuierlich:
-- Antwortrelevanz
-- Vollständigkeit
-- Kohärenz
-- Genauigkeit
-- Kontextabdeckung
+- **Funktionen**:
+  - Intent-basierte Anpassung
+  - Automatische Korrektur
+  - Style-Konsistenz
