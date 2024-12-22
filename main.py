@@ -242,7 +242,7 @@ def main():
 
 if __name__ == "__main__":
     try:
-        os.environ["GOOGLE_API_KEY"] = "AIzaSyBcQirBbnPoYInsC15fz-3-vUYPUbpfUkI"  # Replace with your actual API key
+        os.environ["GOOGLE_API_KEY"] = API_Key  # Replace with your actual API key
         main()
     except Exception as e:
         st.error(f"Kritischer Fehler: {str(e)}")
