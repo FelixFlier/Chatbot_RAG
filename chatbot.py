@@ -1,16 +1,19 @@
+# chatbot_new.py
 import os
+import time
 import pickle
-from typing import Dict, List, Any, Optional, Callable
+from typing import Dict, List, Any, Optional
 import numpy as np
 from pathlib import Path
+import gdown
+from datetime import datetime
 from langchain_google_genai import GoogleGenerativeAI
 from langchain.memory import ConversationBufferWindowMemory
 from langchain_community.vectorstores import FAISS
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain.prompts import PromptTemplate
-from langchain.chains import LLMChain
 from callbacks import ProcessCallback
-from greeting_handler import GreetingRecognizer, GreetingResponder
+import streamlit as st
 from model_classes import (
     IntelligentIntentRecognizer, 
     DynamicConceptAnalyzer,
@@ -19,309 +22,297 @@ from model_classes import (
     ResponseGenerator
 )
 from dotenv import load_dotenv
-load_dotenv()
+import logging
+from shared_models import SharedModels
+from optimized_store import OptimizedVectorStore
+
+# Logging Setup
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler(Path(__file__).parent / 'chatbot.log'),
+        logging.StreamHandler()
+    ]
+)
+
+logger = logging.getLogger(__name__)
+
 # Constants
-BASE_PATH = Path(__file__).parent
-VECTOR_STORE_PATH = str(BASE_PATH / "vector_stores")
+BASE_PATH = Path(__file__).resolve().parent
+VECTOR_STORE_PATH = BASE_PATH / "vector_stores"
+VECTOR_STORE_FILE = VECTOR_STORE_PATH / "vectorstore.pkl"
+BM25_STORE_FILE = VECTOR_STORE_PATH / "bm25.pkl"
+
+CACHE_SIZE = 1000
+MIN_SIMILARITY = 0.6
+MAX_RESULTS = 5
 
 class InitializationError(Exception):
-    """Fehler bei der Initialisierung des Chatbots"""
+    """Fehler bei der Initialisierung des Systems"""
     pass
 
-class ProcessingError(Exception):
-    """Fehler bei der Verarbeitung einer Anfrage"""
+class ChatbotError(Exception):
+    """Basis-Fehlerklasse für Chatbot-bezogene Fehler"""
+    pass
+
+class APIError(ChatbotError):
+    """Fehler bei API-Aufrufen"""
+    pass
+
+class StateError(ChatbotError):
+    """Fehler im Session State"""
     pass
 
 class IntelligentRAGChatbot:
-    def __init__(self, vectorstore_path: str, bm25_path: str, api_key: Optional[str] = None):
+    def __init__(self, vectorstore_file: Path, bm25_file: Path, api_key: Optional[str] = None):
         """
-        Initialisiert den RAG Chatbot
+        Initialisiert den RAG Chatbot mit optimierter Ladestrategie
+        """
+        self.logger = logging.getLogger(__name__)
+        self.logger.setLevel(logging.INFO)
         
-        Args:
-            vectorstore_path: Pfad zur Vector Store Datei
-            bm25_path: Pfad zur BM25 Datei
-            api_key: Optional - Google API Key
-        """
         try:
-            # Verbesserte Pfadhandhabung
-            self.base_path = Path(os.path.dirname(os.path.abspath(__file__)))
-            self.vector_store_path = self.base_path / "vector_stores"
+            # Initialisiere geteilte Modelle
+            self.shared_models = SharedModels()
+            self.embeddings_model = self.shared_models.embeddings_model
             
-            # Erstelle Vector Store Verzeichnis falls nicht vorhanden
-            self.vector_store_path.mkdir(parents=True, exist_ok=True)
+            # Performance Metrics
+            self.performance_metrics = []
+            self.search_metrics = []
             
-            self.greeting_recognizer = GreetingRecognizer()
-            self.greeting_responder = GreetingResponder()
+            # Vector Store und BM25 Initialisierung
+            self._initialize_stores(vectorstore_file, bm25_file)
+
+            # API Key setzen
+            if api_key:
+                os.environ["GOOGLE_API_KEY"] = api_key
+
+            # Komponenten Initialisierung
+            self._initialize_components(api_key)
             
-            # Initialisiere Embeddings mit Error Handling
-            try:
-                self.embeddings = HuggingFaceEmbeddings(
-                    model_name="sentence-transformers/paraphrase-multilingual-mpnet-base-v2"
-                )
-            except Exception as e:
-                raise InitializationError(f"Fehler bei der Initialisierung der Embeddings: {str(e)}")
-            
-            vectorstore_full_path = os.path.join(VECTOR_STORE_PATH, vectorstore_path)
-            bm25_full_path = os.path.join(VECTOR_STORE_PATH, bm25_path)
-            
-            with open(vectorstore_full_path, 'rb') as f:
-                self.vectorstore = pickle.load(f)
-            with open(bm25_full_path, 'rb') as f:
-                self.bm25 = pickle.load(f)
-            
-            api_key = st.secrets["GOOGLE_API_KEY"]
-            os.environ["GOOGLE_API_KEY"] = api_key
-            
-            # LLM Initialisierung mit Error Handling
-            try:
-                self.llm = GoogleGenerativeAI(
-                    model="gemini-pro",
-                    temperature=0.4,
-                    top_p=0.95,
-                    max_output_tokens=700
-                )
-            except Exception as e:
-                raise InitializationError(f"Fehler bei der LLM Initialisierung: {str(e)}")
-            
-            # Memory Initialisierung
-            self.memory = ConversationBufferWindowMemory(
-                k=4,
-                memory_key="chat_history",
-                input_key="question",
-                return_messages=True  # Aktiviere Message Format
-            )
-            
-            # Komponenten Initialisierung mit Error Handling
-            try:
-                self.thematic_tracker = EnhancedThematicTracker(self.embeddings)
-                self.searcher = EnhancedHybridSearcher(
-                    self.vectorstore,
-                    self.bm25,
-                    self.thematic_tracker
-                )
-                self.intention_recognizer = IntelligentIntentRecognizer(self.vectorstore)
-                self.concept_analyzer = DynamicConceptAnalyzer(self.vectorstore)
-                self.response_generator = ResponseGenerator(
-                    self.llm,
-                    self.embeddings
-                )
-            except Exception as e:
-                raise InitializationError(f"Fehler bei der Komponenten-Initialisierung: {str(e)}")
+            # Speichere letzte Antwort für Follow-ups
+            self.last_response = None
             
         except Exception as e:
             raise InitializationError(f"Fehler bei der Initialisierung: {str(e)}")
 
-    def get_relevant_context(self, query: str) -> str:
-        """
-        Holt relevanten Kontext aus dem Vector Store mit verbessertem Error Handling
-        """
+    def _initialize_stores(self, vectorstore_file: Path, bm25_file: Path):
+        """Initialisiert Vector Store und BM25"""
         try:
-            if not query or not isinstance(query, str):
-                raise ValueError("Ungültige Anfrage")
+            # Überprüfe Dateien
+            if not vectorstore_file.exists():
+                raise InitializationError(f"Vector Store Datei nicht gefunden: {vectorstore_file}")
+            if not bm25_file.exists():
+                raise InitializationError(f"BM25 Datei nicht gefunden: {bm25_file}")
+
+            # Optimierte Vector Store Initialisierung
+            self.vectorstore = OptimizedVectorStore(vectorstore_file)
+            
+            # BM25 laden
+            with bm25_file.open('rb') as f:
+                self.bm25 = pickle.load(f)
                 
-            results = self.searcher.hybrid_search(
-                query,
-                self.thematic_tracker.get_current_context()
+        except Exception as e:
+            raise InitializationError(f"Fehler bei Store-Initialisierung: {str(e)}")
+
+    def _initialize_components(self, api_key: Optional[str] = None):
+        try:
+            # LLM Setup
+            self.llm = self._initialize_llm(api_key)
+            
+            # Memory
+            self.memory = ConversationBufferWindowMemory(
+                k=4,
+                memory_key="chat_history",
+                input_key="question",
+                return_messages=True
             )
             
-            if not results:
-                return ""
-                
-            # Validiere Ergebnisse
-            if not isinstance(results, (list, tuple)):
-                raise TypeError("Ungültiges Ergebnisformat vom Searcher")
-                
-            return " ".join(str(r) for r in results)
+            # Optimierte Komponenten
+            self._initialize_optimized_components()
             
+            # Speichere letzte Antwort für Follow-ups
+            self.last_response = None
+                
         except Exception as e:
-            print(f"Fehler bei der Kontextsuche: {str(e)}")
-            return ""
+            raise InitializationError(f"Fehler bei Komponenten-Initialisierung: {str(e)}")
 
-    
-    def get_response(self, query: str, callback: Optional[ProcessCallback] = None) -> Dict[str, Any]:
+    def _initialize_optimized_components(self):
         try:
-            # Prüfe zuerst auf Begrüßung
-            greeting_info = self.greeting_recognizer.analyze_greeting(query)
-            if greeting_info['is_greeting']:
-                response = self.greeting_responder.get_response(greeting_info['type'])
-                return {
-                    'answer': response,
-                    'metadata': {
-                        'intent': {'intent': 'greeting', 'confidence': greeting_info['confidence']},
-                        'quality_metrics': {
-                            'metrics': {
-                                'relevance_score': 1.0,
-                                'completeness_score': 1.0,
-                                'coherence_score': 1.0,
-                                'accuracy_score': 1.0
-                            }
-                        },
-                        'context_coverage': 1.0,
-                        'failed_quality_check': False,
-                        'failed_metrics': []
-                    }
-                }
+            # Thematic Tracker
+            self.thematic_tracker = EnhancedThematicTracker(self.embeddings_model)
+            
+            # Hybrid Searcher
+            self.searcher = EnhancedHybridSearcher(
+                vectorstore=self.vectorstore,
+                bm25=self.bm25,
+                thematic_tracker=self.thematic_tracker,
+                cache_size=CACHE_SIZE,
+                min_similarity=MIN_SIMILARITY
+            )
+            
+            # Intent Recognizer und Response Generator initialisieren
+            self.intention_recognizer = IntelligentIntentRecognizer(self.vectorstore, self.llm)
+            self.concept_analyzer = DynamicConceptAnalyzer(self.vectorstore)  # Diese Zeile fehlte
+            self.response_generator = ResponseGenerator(self.llm, self.embeddings_model)
+                
+        except Exception as e:
+            raise InitializationError(f"Fehler bei Optimierungs-Initialisierung: {str(e)}")
+    def _initialize_llm(self, api_key: Optional[str] = None):
+        """Initialisiert das LLM"""
+        try:
+            api_key = api_key or os.getenv("GOOGLE_API_KEY")
+            if not api_key:
+                raise InitializationError("Google API Key nicht gefunden")
+                
+            return GoogleGenerativeAI(
+                model="gemini-pro",
+                temperature=0.4,
+                top_p=0.95,
+                max_output_tokens=700
+            )
+        except Exception as e:
+            raise InitializationError(f"LLM-Initialisierungsfehler: {str(e)}")
 
-            # Normale Verarbeitung
+    def get_response(self, query: str, callback: Optional[ProcessCallback] = None) -> Dict[str, Any]:
+        start_time = time.time()
+        
+        try:
+            self.logger.debug(f"Starte Verarbeitung für Query: {query}")
+            
+            # Intent Analyse mit Kontext
             if callback:
                 callback.update("Analysiere Intent...", 0.2)
             
-            intent_info = self.intention_recognizer.analyze_intent(
-                query,
-                self.thematic_tracker.get_current_context()
-            )
+            context = {
+                'last_response': self.last_response.get('response', '') if self.last_response else '',
+                'active_themes': self.thematic_tracker.get_current_context(),
+                'last_query': query
+            }
             
+            intent_info = self.intention_recognizer.analyze_intent(query, context)
+            
+            # Für reine Konversations-Intents keine Suche durchführen
+            if intent_info['intent'] in {'greeting', 'farewell', 'gratitude', 'acknowledgment'}:
+                response_info = self.response_generator.generate_response(
+                    query=query,
+                    context=[],
+                    intent_info=intent_info
+                )
+                self.last_response = response_info
+                return response_info
+
+            # Konzeptanalyse
             if callback:
                 callback.update("Analysiere Konzepte...", 0.4)
-            
             concept_info = self.concept_analyzer.analyze_query_concepts(query)
             
+            # Theme Tracking
             if callback:
-                callback.update("Aktualisiere thematischen Kontext...", 0.6)
-                
-            theme_updates = self.thematic_tracker.update_themes(
+                callback.update("Aktualisiere Kontext...", 0.6)
+            self.thematic_tracker.update_themes(
                 message=query,
-                detected_themes=[concept['text'] for concept in 
-                            concept_info.get('query_concepts', {}).get('entities', [])],
-                concepts=concept_info.get('combined_concepts', {}),
+                detected_themes=[c.get('text', '') for c in concept_info.get('entities', [])],
+                concepts=concept_info,
+                intent_info=intent_info
+            )
+
+            # Suche nur durchführen wenn nötig
+            if not intent_info.get('skip_search', False):
+                if callback:
+                    callback.update("Suche relevante Informationen...", 0.8)
+                search_results = self.searcher.hybrid_search(
+                    query=query,
+                    context=self.thematic_tracker.get_current_context(),
+                    k=MAX_RESULTS
+                )
+            else:
+                search_results = []
+
+            # Antwort generieren
+            if callback:
+                callback.update("Generiere Antwort...", 0.9)
+            response_info = self.response_generator.generate_response(
+                query=query,
+                context=search_results,
                 intent_info=intent_info
             )
             
-            if callback:
-                callback.update("Suche relevante Informationen...", 0.7)
-            
-            search_results = self.searcher.hybrid_search(
-                query,
-                self.thematic_tracker.get_current_context()
-            )
-            
-            if not search_results:
-                if callback:
-                    callback.update("Keine relevanten Informationen gefunden", 1.0)
-                return {
-                    'answer': "Ich konnte leider keine relevanten Informationen finden.",
-                    'metadata': {
-                        'intent': intent_info,
-                        'concepts': concept_info,
-                        'theme_updates': theme_updates,
-                        'quality_metrics': {'metrics': {}},
-                        'context_coverage': 0.0
-                    }
-                }
+            # Memory Update
+            self._update_memory(query, response_info['response'])
+            self.last_response = response_info
 
-            if callback:
-                callback.update("Generiere Antwort...", 0.9)
+            # Performance Tracking
+            self._monitor_total_performance(start_time)
             
-            response_info = self.response_generator.generate_response(
-                query,
-                search_results,
-                intent_info
-            )
-            
-            # Hole die Antwort und Qualitätsmetriken
-            answer_text = response_info.get('answer', '')
-            quality_check = response_info.get('metadata', {}).get('quality_metrics', {})
-            failed_metrics = response_info.get('metadata', {}).get('failed_metrics', [])
-            
-            # Aktualisiere Gedächtnis
+            return response_info
+
+        except Exception as e:
+            self.logger.error(f"Fehler in get_response: {str(e)}", exc_info=True)
+            return self._create_error_response(str(e))
+
+    def _update_memory(self, query: str, response: str):
+        """Aktualisiert den Konversationskontext"""
+        try:
             self.memory.save_context(
                 {"question": query},
-                {"answer": answer_text}
+                {"answer": response}
             )
+        except Exception as e:
+            self.logger.warning(f"Memory Update fehlgeschlagen: {str(e)}")
 
-            if callback:
-                callback.update("Fertig!", 1.0)
-
-            return {
-                'answer': answer_text,
-                'metadata': {
-                    'intent': intent_info,
-                    'concepts': concept_info,
-                    'theme_updates': theme_updates,
-                    'quality_metrics': quality_check,
-                    'context_coverage': response_info.get('metadata', {}).get('context_coverage', 0.0),
-                    'failed_quality_check': bool(failed_metrics),
-                    'failed_metrics': failed_metrics
-                }
-            }
+    def _monitor_total_performance(self, start_time: float):
+        """Überwacht die Gesamtperformance"""
+        try:
+            duration = time.time() - start_time
+            self.performance_metrics.append({
+                'total_duration': duration,
+                'timestamp': datetime.now()
+            })
+            
+            if len(self.performance_metrics) > CACHE_SIZE:
+                self.performance_metrics = self.performance_metrics[-CACHE_SIZE:]
                 
         except Exception as e:
-            if callback:
-                callback.update(f"Fehler: {str(e)}", 1.0)
-            return {
-                'answer': "Es tut mir leid, aber ich konnte keine angemessene Antwort generieren. "
-                        "Können Sie Ihre Frage bitte anders formulieren?",
-                'error': str(e),
-                'metadata': {
-                    'quality_metrics': {'metrics': {}},
-                    'context_coverage': 0.0,
-                    'failed_quality_check': True,
-                    'failed_metrics': ['processing_error']
-                }
-            }
+            self.logger.warning(f"Performance Monitoring fehlgeschlagen: {str(e)}")
 
-    def _process_query(self, query: str) -> Dict[str, Any]:
-        """
-        Interne Methode zur Verarbeitung der Anfrage
-        """
-        # 1. Intentionserkennung
-        intent_info = self.intention_recognizer.analyze_intent(
-            query,
-            self.thematic_tracker.get_current_context()
-        )
-        
-        # 2. Konzeptanalyse
-        concept_info = self.concept_analyzer.analyze_query_concepts(query)
-        
-        # 3. Thematisches Tracking
-        theme_updates = self.thematic_tracker.update_themes(
-            message=query,
-            detected_themes=[concept['text'] for concept in 
-                        concept_info.get('query_concepts', {}).get('entities', [])],
-            concepts=concept_info.get('combined_concepts', {}),
-            intent_info=intent_info
-        )
-        
-        # 4. Kontextsuche
-        search_results = self.searcher.hybrid_search(
-            query,
-            self.thematic_tracker.get_current_context()
-        )
-        
-        if not search_results:
-            return {
-                'answer': "Ich konnte leider keine relevanten Informationen finden.",
-                'metadata': {
-                    'intent': intent_info,
-                    'concepts': concept_info,
-                    'theme_updates': theme_updates
-                },
-                'success': True
-            }
-        
-        # 5. Antwortgenerierung
-        response_info = self.response_generator.generate_response(
-            query,
-            search_results,
-            intent_info
-        )
-        
-        # 6. Gedächtnis aktualisieren
-        answer_text = response_info['answer']
-        self.memory.save_context(
-            {"question": query},
-            {"answer": answer_text}
-        )
-        
-        # 7. Erfolgreiche Antwort
+    def _create_error_response(self, error_message: str) -> Dict[str, Any]:
+        """Erstellt eine formatierte Fehlerantwort"""
         return {
-            'answer': answer_text,
+            'response': "Es tut mir leid, es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
             'metadata': {
-                'intent': intent_info,
-                'concepts': concept_info,
-                'theme_updates': theme_updates,
-                'quality_metrics': response_info.get('quality_metrics'),
-                'context_coverage': response_info.get('context_coverage')
-            },
-            'success': True
+                'error': error_message,
+                'intent': {'intent': 'error', 'confidence': 0.0},
+                'quality_metrics': {'metrics': {}},
+                'context_coverage': 0.0
+            }
         }
+
+    def get_performance_stats(self) -> Dict[str, Any]:
+        """Liefert Performance-Statistiken"""
+        try:
+            if not self.performance_metrics:
+                return {}
+            
+            recent_metrics = self.performance_metrics[-100:]
+            
+            return {
+                'average_response_time': np.mean([m['total_duration'] for m in recent_metrics]),
+                'total_requests': len(self.performance_metrics),
+                'cache_hit_rate': self.searcher.get_cache_stats() if hasattr(self.searcher, 'get_cache_stats') else None
+            }
+        except Exception as e:
+            self.logger.error(f"Fehler beim Abrufen der Performance-Statistiken: {str(e)}")
+            return {}
+
+    def clear_caches(self):
+        """Leert alle Caches"""
+        try:
+            if hasattr(self.searcher, 'result_cache'):
+                self.searcher.result_cache.clear()
+            if hasattr(self.searcher, 'embedding_cache'):
+                self.searcher.embedding_cache.clear()
+            self.logger.info("Caches erfolgreich geleert")
+        except Exception as e:
+            self.logger.error(f"Fehler beim Leeren der Caches: {str(e)}")
