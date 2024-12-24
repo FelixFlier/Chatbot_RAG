@@ -81,16 +81,6 @@ Der WP-RAG-Chatbot ist ein hochmoderner, KI-gestützter Assistent, spezialisiert
    - Kontextuelle Relevanzprüfung
    - Diversity-basiertes Reranking
 
-#### Adaptive Gewichtung
-```python
-Gewichtungsfaktoren:
-- Semantische Relevanz: 0.6
-- Keyword-Matching: 0.1
-- Graph-Relevanz: 0.15
-- Statistische Relevanz: 0.1
-- Kontext-Relevanz: 0.05
-```
-
 ### 🧠 Intelligente Kontextverarbeitung
 
 #### Thematisches Tracking
